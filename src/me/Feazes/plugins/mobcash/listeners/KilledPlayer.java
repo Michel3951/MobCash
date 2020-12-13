@@ -10,70 +10,38 @@ import me.Feazes.plugins.mobcash.Main;
 import me.Feazes.plugins.mobcash.methods.EconomyDealer;
 import me.Feazes.plugins.mobcash.methods.Format;
 import me.Feazes.plugins.mobcash.methods.PlMath;
+import me.Feazes.plugins.mobcash.warnings.Configuration;
 
 public class KilledPlayer implements Listener {
-	
-	public static Main plugin;
-
 
 	@EventHandler
 	public void onKill(PlayerDeathEvent e) {
 		Player killer = e.getEntity().getKiller();
-		Player victim = e.getEntity();
-		EconomyDealer ed = new EconomyDealer();
-		PlMath pm = new PlMath();
 		String playermessage;
 		FileConfiguration fc = Main.plugin.getConfig();
 		
-		if (killer instanceof Player) {
-			
-			boolean enabled = fc.getBoolean("Mobcash.Mobs.Player.Set-enabled");
-			boolean isKillerMessageEnabled = fc.getBoolean("Mobcash.Mobs.Player.Killer-Message.Enabled");
-			boolean isVictimMessageEnabled = fc.getBoolean("Mobcash.Mobs.Player.Victim-Message.Enabled");
-			Double gmax = fc.getDouble("Mobcash.Mobs.Player.Killer-recieves.max");
-			Double gmin = fc.getDouble("Mobcash.Mobs.Player.Killer-recieves.min");
-			Double gained = pm.setRandomCash(gmin, gmax);
-			
-			Double lmax = fc.getDouble("Mobcash.Mobs.Player.Victim-loses.max");
-			Double lmin = fc.getDouble("Mobcash.Mobs.Player.Victim-loses.min");
-			Double lost = pm.setRandomCash(lmin, lmax);
+		if (killer instanceof Player && fc.getBoolean("Mobcash.PVP.Enabled")) {
+			Player victim = e.getEntity();
+
+			Double gmax = fc.getDouble("Mobcash.PVP.Killer-takes.max");
+			Double gmin = fc.getDouble("Mobcash.PVP.Killer-takes.min");
+			Double gained = Math.abs(PlMath.setRandomCash(gmin, gmax));
 			
 			Double killedHas = Main.economy.getBalance(victim);
 			
-			if (killedHas < lost) {
-				lost = killedHas;
-				gained = killedHas;
+			if (killedHas < gained) gained = killedHas;
+			
+			if (fc.getBoolean("Mobcash.PVP.Messages-Enabled")) {
+				playermessage = Format.playerkill(fc.getString("Mobcash.PVP.KillerMessage"), killer, victim, gained);
+				Format.sendMessage(playermessage, killer, Configuration.getMessageType());
+				
+				playermessage = Format.playerkill(fc.getString("Mobcash.PVP.VictimMessage"), killer, victim, gained);
+				Format.sendMessage(playermessage, victim, Configuration.getMessageType());
 			}
-			
-			String g =String.valueOf(gained);
-			String l =String.valueOf(lost);	
-			
-			if (enabled == true && !(lost == 0 && gained == 0)) {
-				if (isKillerMessageEnabled == true) {
-					playermessage = Format.playerkill(fc.getString("Mobcash.Mobs.Player.Killer-Message.Message"), killer, victim, g);
-					Format.sendMessage(playermessage, killer, Format.getMessageTypeFromString(fc.getString("Mobcash.Mobs.Player.Killer-Message.Message-Type")));
-				}
-				if (isVictimMessageEnabled == true) {
-					playermessage = Format.playerkill(fc.getString("Mobcash.Mobs.Player.Victim-Message.Message"), killer, victim, l);
-					Format.sendMessage(playermessage, victim, Format.getMessageTypeFromString(fc.getString("Mobcash.Mobs.Player.Killer-Message.Message-Type")));
-				}
-				
-				//Money
-				
-				 if (gained != 0 || lost != 0) {
-					
-					if (gained != 0) {
-						ed.addMoney(killer, gained);
-					}
-					
-					if (lost != 0) {
-				ed.takeMoney(victim, lost);
-					}
-				}
-				
-				
+			 if (gained != 0) {
+				EconomyDealer.addMoney(killer, gained);
+				EconomyDealer.takeMoney(victim, gained);
 			}
-			
 		}
 		
 	}

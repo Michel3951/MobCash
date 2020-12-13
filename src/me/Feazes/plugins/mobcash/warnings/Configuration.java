@@ -3,18 +3,19 @@ package me.Feazes.plugins.mobcash.warnings;
 import java.io.File;
 
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.file.FileConfiguration;
 
 import me.Feazes.plugins.mobcash.Main;
+import me.Feazes.plugins.mobcash.methods.Format.MessageType;
 
-public class ConfigVersion {
+public class Configuration {
 	File datafolder = Main.plugin.getDataFolder();
 	File config = new File(datafolder, "config.yml");
 	File newConfig = new File(datafolder, "oldconfig.yml");
 	
-	public void configVersionCheck(String version) {
+	public void configVersionCheck(double version) {
 		
-		if (!(Main.plugin.getConfig().getString("Mobcash.Version").equalsIgnoreCase(version))) {
-			
+		if (Main.plugin.getConfig().getDouble("Mobcash.Version") != version) {
 			
 			Main.plugin.saveDefaultConfig();
 			Main.plugin.getLogger().warning(ChatColor.RED + "-------------[Mobcash]-------------");
@@ -34,4 +35,14 @@ public class ConfigVersion {
 		else {Main.plugin.getLogger().info(ChatColor.GREEN + "Config version ok.");}
 	
 	}
+	
+	static FileConfiguration config() {
+		return Main.plugin.getConfig();
+	}
+	
+	public static MessageType getMessageType() {
+		return MessageType.fromString(config().getString("Mobcash.Message-Type"));
+	}
+	
+	
 }

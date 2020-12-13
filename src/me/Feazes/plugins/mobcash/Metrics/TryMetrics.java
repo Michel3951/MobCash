@@ -5,19 +5,13 @@ import java.io.IOException;
 import me.Feazes.plugins.mobcash.Main;
 
 public class TryMetrics {
-
-public static Main plugin;
 	
-	public TryMetrics(Main instance) {
-		plugin = instance;
-	}
-	
-	public void tryMetrics() {
+	public static void tryMetrics() {
 		
 		try {
-	        Metrics metrics = new Metrics(plugin);
+	        Metrics metrics = new Metrics(Main.plugin);
 	        metrics.start();
-            plugin.getLogger().info("Now tracking stats!");
+	        Main.plugin.getLogger().info("Now tracking stats!");
 	    } catch (IOException e) {
 	        // Failed to submit the stats :-(
 	    }

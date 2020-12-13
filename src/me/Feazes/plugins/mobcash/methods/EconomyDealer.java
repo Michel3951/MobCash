@@ -6,11 +6,11 @@ import org.bukkit.entity.Player;
 import me.Feazes.plugins.mobcash.Main;
 
 public class EconomyDealer {
-	public void addMoney(Player player, Double money) {
+	public static void addMoney(Player player, Double money) {
 		Main.economy.depositPlayer((OfflinePlayer)player,money);		
 	}
 	
-	public void takeMoney(OfflinePlayer player, Double money) {
+	public static void takeMoney(OfflinePlayer player, Double money) {
 		Main.economy.withdrawPlayer((OfflinePlayer)player.getPlayer(), money);
 	}
 	

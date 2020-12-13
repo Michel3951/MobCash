@@ -4,36 +4,41 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import me.Feazes.plugins.mobcash.Metrics.TryMetrics;
-import me.Feazes.plugins.mobcash.commands.RegisterCommands;
-import me.Feazes.plugins.mobcash.listeners.RegisterListeners;
-import me.Feazes.plugins.mobcash.warnings.ConfigVersion;
+import me.Feazes.plugins.mobcash.commands.Mobcash;
+import me.Feazes.plugins.mobcash.listeners.KilledPlayer;
+import me.Feazes.plugins.mobcash.listeners.MobKillAndSpawn;
+import me.Feazes.plugins.mobcash.warnings.Configuration;
 import net.milkbowl.vault.economy.Economy;
 
 public class Main extends JavaPlugin {
 	
 	public static Main plugin;
 
-	public static Economy economy = null;
-	String version = "7.2";
-	public List<UUID> spawnedMobs = new ArrayList<UUID>();
+	public static Economy economy;
+	public static List<UUID> spawnedMobs = new ArrayList<UUID>();
 
-
-	
 	@Override
 	public void onEnable() {
 		try {
 			plugin = this;
 			this.getLogger().info(" has been enabled!");
 		
-			new ConfigVersion().configVersionCheck(version);
+			new Configuration().configVersionCheck(8.0);
 			setupEconomy();
-			new RegisterListeners();
-			new RegisterCommands();
-			new TryMetrics(this);
+
+			PluginManager pm = Bukkit.getPluginManager();
+			
+			pm.registerEvents(new KilledPlayer(), Main.plugin);
+			pm.registerEvents(new MobKillAndSpawn(), Main.plugin);
+			
+			getCommand("mobcash").setExecutor(new Mobcash());
+			new TryMetrics();
 		
 			this.getConfig().options().copyDefaults(true);
 			saveDefaultConfig();

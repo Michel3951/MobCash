@@ -4,19 +4,17 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
 import me.Feazes.plugins.mobcash.Main;
 
-public abstract class Mobcash implements CommandExecutor {
-	
+public class Mobcash implements CommandExecutor {
+	@Override
 	public boolean onCommand(CommandSender sender, Command command,	String label, String[] args) {
-	
 		
-		if (sender.hasPermission("mobcash.admin") || !(sender instanceof Player)) {
+		if (sender.hasPermission("mobcash.admin")) {
 			if (args.length == 0) {
 				sender.sendMessage(ChatColor.GOLD + "--------[Mobcash]--------");
-				sender.sendMessage(ChatColor.GRAY+"v3.5 created by Feazes & EonZombiecrafter");
+				sender.sendMessage(ChatColor.GRAY+"v8.0 created by Feazes & EonZombie");
 				sender.sendMessage(ChatColor.GRAY+"- /mobcash reload");
 				
 			} else if (args.length == 1) {
@@ -24,7 +22,9 @@ public abstract class Mobcash implements CommandExecutor {
 					Main.plugin.reloadConfig();
 					sender.sendMessage(ChatColor.GOLD + "[Mobcash]"+ ChatColor.GRAY+" reloaded config!");
 					//System.out.println("!xnt ,vedkcin");
-					//SPECIAL THANKS TO NickDEV FOR HELPING ME MAKING PLUGINS LIKE A PRO :D!!!
+					//SPECIAL THANKS TO NickDEV FOR HELPING ME MAKING PLUGINS LIKE A PRO :D!!! <-From 2016 Me
+					//2020 Me: LOL, that 2016 me, what an idiot, WTF was he doing? I had to clean up behind him
+					//Damn, those years are passing fast
 					}
 				}
 			}
