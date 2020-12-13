@@ -1,0 +1,12 @@
+name: Mobcash
+author: EonZombiecrafter & Feazes
+main: me.Feazes.plugins.mobcash.Main
+version: 7.2
+description: MobCash gives players money when they kill a mob/player.
+depend: [Vault]
+
+commands:
+    mobcash:
+        description: shows information about the plugin.
+        permission: mobcash.admin
+        permission-message: You dont have the permission for this command!

@@ -1,0 +1,217 @@
+#Mobcash Created by Feazes[retired]
+#Updated to 7 7/22/2017 by EonZombiecrafter
+
+Mobcash:
+    #Don't edit the Version.
+    Version: "7.2"
+    #Enable/disable messages when you kill a mob
+    Message-enabled: true
+    #Message sent to a player who just killed a mob
+    #Replacements can be used: colors &(1-9 | a-f) words <(player | mob | money)>
+    Message: "&6Good job &c<player>! you just killed a &c<mob> &6and recieved &c$<money>."
+    #Send message as ACTIONBAR or as regular MESSAGE
+    Message-Type: ACTIONBAR
+
+    #Disable cash for ways mobs have been spawned
+    Disable:
+        Mob Spawners: false
+        Spawn Egg: false
+        Breeding: false
+        Natural: false
+        Slime Split: false
+    #Worlds that the plugin is enabled in
+    Worlds:
+        - world
+        - world_nether
+    #Settings for the amount of cash players get for killing mobs
+    Mobs:
+        #Group Mob Settings
+        #This is for people who want to set the same price for all mobs in a group
+        Group Settings:
+            #if set to false Individual Mob Settings will be enabled
+            Enabled: false
+            Friendly Mobs:
+                min: 5
+                max: 5
+            Agressive Mobs:
+                min: 10
+                max: 10
+            Bosses:
+                min: 40
+                max: 40
+        #Individual Mob Settings 
+        #Format min | max <value>
+        #If you want the disable the mob put 0 as the amount for min and max value
+        
+        Friendly Mobs:
+            Bat:
+                min: 3
+                max: 3
+            Chicken:
+                min: 3
+                max: 3
+            Cow:
+                min: 3
+                max: 3
+            Donkey:
+                min: 3
+                max: 3
+            Horse:
+                min: 3
+                max: 3
+            Llama:
+                min: 3
+                max: 3
+            Mushroom Cow:
+                min: 3
+                max: 3
+            Ocelot:
+                min: 3
+                max: 3
+            Parrot:
+                min: 3
+                max: 3
+            Pig:
+                min: 3
+                max: 3
+            Rabbit:
+                min: 3
+                max: 3
+            Sheep:
+                min: 3
+                max: 3
+            Skeleton horse:
+                min: 3
+                max: 3
+            Squid:
+                min: 3
+                max: 3
+            Villager:
+                min: 3
+                max: 3
+            Zombie horse: 
+                min: 3
+                max: 3
+            
+        Agressive Mobs:
+            Blaze:
+                min: 10
+                max: 10
+            Cave Spider:
+                min: 10
+                max: 10
+            Creeper:
+                min: 10
+                max: 10
+            Elder Guardian:
+                min: 10
+                max: 10
+            Enderman:
+                min: 10
+                max: 10
+            Endermite:
+                min: 10
+                max: 10
+            Evoker:
+                min: 10
+                max: 10
+            Ghast:
+                min: 10
+                max: 10
+            Giant:
+                min: 10
+                max: 10
+            Guardian:
+                min: 10
+                max: 10
+            Husk:
+                min: 10
+                max: 10
+            Illusioner:
+                min: 10
+                max: 10
+            Iron Golem:
+                min: 10
+                max: 10
+            Magma Cube:
+                min: 10
+                max: 10
+            Pig Zombie:
+                min: 10
+                max: 10
+            Polar Bear:
+                min: 10
+                max: 10
+            Shulker:
+                min: 10
+                max: 10
+            Silver Fish:
+                min: 10
+                max: 10
+            Skeleton:
+                min: 10
+                max: 10
+            Slime:
+                min: 10
+                max: 10
+            Stray:
+                min: 10
+                max: 10
+            Snowman:
+                min: 10
+                max: 10
+            Spider:
+                min: 10
+                max: 10
+            Vex:
+                min: 10
+                max: 10
+            Vindicator:
+                min: 10
+                max: 10
+            Witch:
+                min: 10
+                max: 10
+            Wither Skeleton:
+                min: 10
+                max: 10
+            Wolf:
+                min: 10
+                max: 10
+            Zombie:
+                min: 10
+                max: 10
+            Zombie Villager:
+                min: 10
+                max: 10
+            
+        Bosses:
+            Ender Dragon:
+                min: 40
+                max: 40
+            Wither:
+                min: 40
+                max: 40
+        Player:
+        #Do you want to allow players to get money for killing other players.
+            Set-enabled: true
+        #How much should killer get?
+            Killer-recieves:
+                min: 10
+                max: 10
+        #Message to a killer:
+            Killer-Message:
+                Enabled: true
+                Message: "&c<killer>&6! you  killed &c&victim &6and gained &c<money>!"
+                #Send message as ACTIONBAR or as regular MESSAGE
+                Message-Type: ACTIONBAR
+        #How much should killed player lose?
+            Victim-loses:
+                min: 10
+                max: 10
+        #Message to killed player:
+            Victim-Message:
+                Enabled: true
+                Message: "&c<victim>&6! you were killed by &c&killer &6and lost &c<money>!"
+                #Send message as ACTIONBAR or as regular MESSAGE
+                Message-Type: ACTIONBAR
