@@ -1,0 +1,14 @@
+name: Mobcash
+version: ${project.version}
+main: eu.leopoldhauptman.mobcash.Main
+api-version: 1.16
+depend: [ Vault ]
+authors: [ EonZombie, Feazes ]
+description: MobCash gives players money when they kill a mob/player.
+website: www.leopold-hauptman.eu
+
+commands:
+  mobcash:
+    description: Shows information about the plugin.
+    permission: mobcash.admin
+    permission-message: "You don't have the permission for this command!"
