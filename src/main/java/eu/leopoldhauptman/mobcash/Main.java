@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import eu.leopoldhauptman.mobcash.Metrics.MetricsHandler;
+import eu.leopoldhauptman.mobcash.Metrics.Metrics;
 import eu.leopoldhauptman.mobcash.commands.MobCash;
 import eu.leopoldhauptman.mobcash.listeners.KilledPlayer;
 import eu.leopoldhauptman.mobcash.listeners.MobKillAndSpawn;
@@ -39,7 +39,7 @@ public class Main extends JavaPlugin {
 			
 			getCommand("mobcash").setExecutor(new MobCash());
 
-			new MetricsHandler();
+			new Metrics(Main.plugin, 9714);
 
 		}
 		catch (NullPointerException e) {

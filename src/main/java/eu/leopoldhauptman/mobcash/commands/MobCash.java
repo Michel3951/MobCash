@@ -20,11 +20,6 @@ public class MobCash implements CommandExecutor {
 			} else if (args.length == 1) {
 				if (args[0].equalsIgnoreCase("reload")) {
 					Main.plugin.reloadConfig();
-					sender.sendMessage(ChatColor.GOLD + "[Mobcash]"+ ChatColor.GRAY+" reloaded config!");
-					//System.out.println("!xnt ,vedkcin");
-					//SPECIAL THANKS TO NickDEV FOR HELPING ME MAKING PLUGINS LIKE A PRO :D!!! <-From 2016 Me
-					//2020 Me: LOL, that 2016 me, what an idiot, WTF was he doing? I had to clean up behind him
-					//Damn, those years are passing fast
 					}
 				}
 			}

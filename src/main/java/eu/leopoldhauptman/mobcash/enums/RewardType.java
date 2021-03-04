@@ -21,7 +21,7 @@ public enum RewardType {
 		case "percentage":
 			return PERCENTAGE;
 		default:
-			Main.plugin.getLogger().warning("MessageType shoud be CONSTANT, RANDOM or PERCENTAGE. Currently: \"" + input+"\"! Seting to CONSTANT.");
+			Main.plugin.getLogger().warning("MessageType shoud be CONSTANT, RANDOM or PERCENTAGE. Currently: \"" + input+"\"! Setting to CONSTANT.");
 			return CONSTANT;
 		}
 	}

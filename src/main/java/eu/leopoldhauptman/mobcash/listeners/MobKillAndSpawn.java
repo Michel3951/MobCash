@@ -47,13 +47,14 @@ public void playerKill(EntityDeathEvent e) {
                     }
 				}
 			}
+			else Main.spawnedMobs.remove(e.getEntity().getUniqueId());
 		}
 	
 	}
 
 	@EventHandler
 	public void SpawnEvent(CreatureSpawnEvent e) {
-		if (Main.plugin.getConfig().getStringList("").contains(e.getSpawnReason().name().toLowerCase())
+		if (Main.plugin.getConfig().getStringList("Mobcash.Disable-Spawns").contains(e.getSpawnReason().name().toLowerCase())
 		&& !Main.spawnedMobs.contains(e.getEntity().getUniqueId())) Main.spawnedMobs.add(e.getEntity().getUniqueId());
 	}
 }

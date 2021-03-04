@@ -1,5 +1,5 @@
 name: Mobcash
-version: ${project.version}
+version: 8.3
 main: eu.leopoldhauptman.mobcash.Main
 api-version: 1.16
 depend: [ Vault ]

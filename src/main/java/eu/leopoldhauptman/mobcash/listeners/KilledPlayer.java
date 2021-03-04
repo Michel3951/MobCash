@@ -19,12 +19,12 @@ public class KilledPlayer implements Listener {
 		String playermessage;
 		ConfigurationSection fc = Main.plugin.getConfig().getConfigurationSection("Mobcash.PVP");
 		
-		if (killer instanceof Player && fc.getBoolean("Enabled")) {
+		if (killer != null && fc.getBoolean("Enabled")) {
 			Player victim = e.getEntity();
 			
 			double gained = RewardType.getReward(fc.getConfigurationSection("Killer-takes"), true, victim);
 			
-			Double killedHas = Main.economy.getBalance(victim);
+			double killedHas = Main.economy.getBalance(victim);
 			
 			if (killedHas < gained) gained = killedHas;
 			
