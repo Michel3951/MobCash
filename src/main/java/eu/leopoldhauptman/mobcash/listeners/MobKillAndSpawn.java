@@ -10,7 +10,11 @@ import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.entity.EntityDeathEvent;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class MobKillAndSpawn implements Listener {
 
@@ -26,7 +30,19 @@ public void playerKill(EntityDeathEvent e) {
 				ConfigurationSection fc = f.getConfigurationSection("Mobs");
 				ConfigurationSection fc2;
 				Player player = (Player)p;
-				
+				DamageCause cause = e.getEntity().getLastDamageCause().getCause();
+
+				DamageCause[] prohibited = {
+						DamageCause.CRAMMING,
+					DamageCause.FALL
+				};
+
+				List<DamageCause> l = Arrays.asList(prohibited);
+
+				if (l.contains(cause)) {
+					return;
+				}
+
 		        
 		        if (fc.contains("CustomMobSettings." + mobName)) fc2 = fc.getConfigurationSection("CustomMobSettings." + mobName);
 		        
